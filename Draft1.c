@@ -4,6 +4,7 @@
 #include <unistd.h>
 #include <pthread.h>
 #include <memory.h>
+#include <stdbool.h>
   
 int total_weight = 0;
 int southboundqueue = 0;
@@ -16,7 +17,7 @@ struct Vehicle {
 };
 
 //method to initialize vehicle. pass vehicle type as param.
-struct Vehicle Vehicle_init(char *type){
+struct Vehicle newVehicle(char *type) {
     struct Vehicle newVehicle;
     newVehicle.type = type;
     int result = strcmp(type, "Car");
@@ -27,17 +28,28 @@ struct Vehicle Vehicle_init(char *type){
     return newVehicle;
 }
 
-void *newVehicle(struct Vehicle *thisCar)
-{
-    sleep(1);
-    printf("Printing GeeksQuiz from Thread \n");
+int checkWeight(struct Vehicle *thisCar) {
+    if((total_weight + thisCar->weight)<=1200){
+        return 0;
+    } else {
+        return 1;
+    }
+}
+
+void *sendAcross(struct Vehicle *thisCar) {
+    if(checkWeight(thisCar) == 0) {
+        total_weight = total_weight + thisCar->weight;
+        northboundqueue++;
+        sleep(3);
+        total_weight = total_weight - thisCar->weight;
+        northboundqueue--;
+    }
     return NULL;
 }
 
-
-int main()
-{
-    struct Vehicle v1;
-    v1 = Vehicle_init("Van");
+int main() {
+    struct Vehicle *v1;
+    *v1 = newVehicle("Van");
+    sendAcross(v1);
     
 }

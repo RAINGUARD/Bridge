@@ -48,8 +48,8 @@ void *sendAcross(struct Vehicle *thisCar) {
 }
 
 int main() {
-    struct Vehicle *v1;
-    *v1 = newVehicle("Van");
-    sendAcross(v1);
+    struct Vehicle v1;
+    v1 = newVehicle("Van");
+    sendAcross(&v1);
     
 }

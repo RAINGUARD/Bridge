@@ -4,11 +4,8 @@
 #include <unistd.h>
 #include <pthread.h>
 #include <memory.h>
-#include <stdbool.h>
-  
-int total_weight = 0;
-int southboundqueue = 0;
-int northboundqueue = 0;
+
+int total_weight, goingSouth, goingNorth, northboundQueue, southboundQueue;
 
 //structure for vehicles
 struct Vehicle {
@@ -39,15 +36,23 @@ int checkWeight(struct Vehicle *thisCar) {
 void *sendAcross(struct Vehicle *thisCar) {
     if(checkWeight(thisCar) == 0) {
         total_weight = total_weight + thisCar->weight;
-        northboundqueue++;
+        printf("%d\n", total_weight);
+        goingNorth++;
+        printf("%d\n", goingNorth);
         sleep(3);
         total_weight = total_weight - thisCar->weight;
-        northboundqueue--;
+        goingNorth--;
+        printf("%d\n", total_weight);
+        printf("%d\n", goingNorth);
     }
     return NULL;
 }
 
 int main() {
+    total_weight = 0;
+    goingSouth = 0;
+    goingNorth = 0;
+
     struct Vehicle v1;
     v1 = newVehicle("Van");
     sendAcross(&v1);

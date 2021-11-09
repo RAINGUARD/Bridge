@@ -25,6 +25,7 @@ struct Vehicle newVehicle(char *type) {
     return newVehicle;
 }
 
+//method to verify vehicle is safe to cross
 int checkWeight(struct Vehicle *thisCar) {
     if((total_weight + thisCar->weight)<=1200){
         return 0;
@@ -33,6 +34,16 @@ int checkWeight(struct Vehicle *thisCar) {
     }
 }
 
+//method to ensure only 3 cars at a time.
+int numberCheck() {
+    if((goingSouth + goingNorth)<3) {
+        return 0;
+    } else {
+        return 1;
+    }
+}
+
+//method that will handle majority of the logic. Each time you call it, a new thread will be created.
 void *sendAcross(struct Vehicle *thisCar) {
     if(checkWeight(thisCar) == 0) {
         total_weight = total_weight + thisCar->weight;

@@ -5,7 +5,7 @@
 #include <pthread.h>
 #include <memory.h>
 
-int total_weight, goingSouth, goingNorth, northboundQueue, southboundQueue;
+int total_weight, onBridge;
 
 //structure for vehicles
 struct Vehicle {
@@ -36,7 +36,7 @@ int checkWeight(struct Vehicle *thisCar) {
 
 //method to ensure only 3 cars at a time.
 int numberCheck() {
-    if((goingSouth + goingNorth)<3) {
+    if(onBridge<3) {
         return 0;
     } else {
         return 1;
@@ -47,25 +47,30 @@ int numberCheck() {
 void *sendAcross(struct Vehicle *thisCar) {
     if(checkWeight(thisCar) == 0) {
         total_weight = total_weight + thisCar->weight;
-        printf("%d\n", total_weight);
-        goingNorth++;
-        printf("%d\n", goingNorth);
+        printf("Current weight = %d\n", total_weight);
+        onBridge++;
+        printf("Cars on bridge: %d\n", onBridge);
         sleep(3);
         total_weight = total_weight - thisCar->weight;
-        goingNorth--;
-        printf("%d\n", total_weight);
-        printf("%d\n", goingNorth);
+        onBridge--;
+        printf("Current weight = %d\n", total_weight);
+        printf("Cars on bridge: %d\n", onBridge);
     }
     return NULL;
 }
 
 int main() {
     total_weight = 0;
-    goingSouth = 0;
-    goingNorth = 0;
+    onBridge = 0;
 
     struct Vehicle v1;
     v1 = newVehicle("Van");
-    sendAcross(&v1);
+    struct Vehicle v2;
+    v2 = newVehicle("Car");
+
+    pthread_t newthread;
+
+    pthread_create(&newthread, NULL, sendAcross(&v1), NULL);
+    pthread_create(&newthread, NULL, sendAcross(&v2), NULL);
     
 }

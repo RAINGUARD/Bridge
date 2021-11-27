@@ -1,5 +1,6 @@
 ICS 462 Operating Systems
 Group 6: Project 4 Thread Synchronization (Group Project)
+
 Contributor(s) Name: Neil Haggerty, Punyapat Rabalert. Zakariya Mehmud
 StarID(Respectively to the Names): fi2002ae, ih2153wu, rj3591tf
 

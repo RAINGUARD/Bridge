@@ -15,8 +15,22 @@ Write-Up Implementation:
 
 File(s): groupproject4.c
 
+Compiling the code
+prompt>$ gcc -o gp groupproject4.c -pthread
+prompt>$./gp
+
+  -Running the program and How to enter a schedule.
+     Total number of group:(*Enter the Schedule's Number of Group.
+     Group 1: 
+     Total vehicles:(*Enter the Number of Vehicle(s) of the Group.)
+     [N/S] (input should be in '.23/.77' format):(*Enter your N/S Probability Following the Format.)
+     DELAY:(*Enter the Delay time in s Note: Ask When your group is > 1.)
+     Group 2:(Note: Output if your input group is > 1.)
+     Total vehicles: (*Enter the Number of Vehicle(s) of the Group.)
+     [N/S] (input should be in '.23/.77' format): (input should be in '.23/.77' format):(*Enter your Formatted N/S Probability)
+     
 Example Input/Output for Group 1 with 10 vehicles and Group 2 with 15 vehicles delaying 10s between 1st and 2nd groups:
-  -Asking for input
+  -Asking for Input
      Total number of group: 2
      Group 1: 
      Total vehicles: 10

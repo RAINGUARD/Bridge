@@ -8,7 +8,8 @@ The Program is the multithreaded program to simulate the bridge with 2 lanes, ha
 the bridge's traffic policies and restrictions for a vehicle to perform its routine on
 the bridge, which are: arrive, cross, and leave the bridge on the correct direction
 while following the bridge's policies and restrictions such as 1200 unit weight limit,
-two empty lanes can be used for
+two empty lanes can be used for the same directions vehicles if there is no waiting/crossing 
+vehicle at the moment, and more.
 
 Write-Up Implementation:
 

@@ -1,7 +1,14 @@
 ICS 462 Operating Systems
 Group 6: Project 4 Thread Synchronization (Group Project)
 Contributor(s) Name: Neil Haggerty, Punyapat Rabalert. Zakariya Mehmud
-StarID:
+StarID(Respectively to the Names): fi2002ae, ih2153wu, rj3591tf
+
+Program Description:
+The Program is the multithreaded program to simulate the bridge with 2 lanes, having
+the bridge's traffic policies and restrictions for a vehicle to perform its routine on
+the bridge, which are: arrive, cross, and leave the bridge on the correct direction
+while following the bridge's policies and restrictions such as 1200 unit weight limit,
+two empty lanes can be used for
 
 Write-Up Implementation:
 
